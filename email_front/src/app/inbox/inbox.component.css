@@ -1,0 +1,44 @@
+.delete {
+    background-color: transparent;
+    border: transparent;
+  }
+  .draft{
+    width: 75%;
+    float: left;
+    position: relative;
+    margin-left: 2%;
+    margin-top: 2%;
+  }
+  .icons{
+    position: absolute;
+    right: 10%;
+  }
+  h1{
+    text-align: center;
+    color: #09c;
+  }
+  strong{
+    color: #09c;
+  }
+  i{
+      color: #09c;
+  }
+  .refr{
+    background-color: black;
+    border-radius: 50%;
+    float: right;
+  }
+  h3{
+    color: #09c;
+  }
+  .alert{
+    background-color: rgba(207, 79, 79,0.6);
+    color: black;
+    margin: auto;
+    padding: 2px;
+    width: 75%;
+    border-radius: 3px;
+    border: solid red;
+    font-size: 13px;
+    text-align: center;
+  }

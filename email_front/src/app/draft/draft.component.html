@@ -1,0 +1,101 @@
+<app-sidebar></app-sidebar>
+<div class="draft">
+  <h1>Draft</h1>
+  <div class="d-flex justify-content-around">
+    <div class="search">
+      <h3>Search:</h3>
+      <input
+        class="d-block w-100"
+        (blur)="searchInput($event)"
+        type="text"
+        id="search"
+      />
+      <select
+        class="d-block w-100 my-2"
+        (change)="searchValue($event)"
+        name="search"
+        id="search"
+      >
+        <option value="date">Date</option>
+        <option value="sender">Sender</option>
+        <option value="subject">Subject</option>
+        <option value="attachment">attachment</option>
+        <option value="periority">importance</option>
+        <option value="body">body</option>
+      </select>
+      <button class="btn btn-outline-info" (click)="sendSearch()">
+        Search
+      </button>
+      <div class="alert mt-1" id="alert" [style.display]="displayAlert">
+        <p>You must write in the input</p>
+      </div>
+    </div>
+
+    <div class="sort">
+      <h3>Sort:</h3>
+      <select
+        class="d-block w-100 mb-2"
+        (change)="sort($event)"
+        name="sort"
+        id="sort"
+      >
+        <option value="default">Date</option>
+        <option value="sender">Sender</option>
+        <option value="priority">Importance</option>
+        <option value="subject">Subject</option>
+      </select>
+      <button class="btn btn-outline-info" (click)="sendSort()">Sort</button>
+    </div>
+
+    <div class="move">
+      <h3>Move to:</h3>
+      <select
+        class="d-block w-100 mb-2"
+        name="folder"
+        id="Folder"
+        (change)="findName($event)"
+        (click)="showFolders()"
+      >
+        <option *ngFor="let item of foldername" value="{{ item }}">
+          {{ item }}
+        </option>
+      </select>
+      <button class="btn btn-outline-info" (click)="move()">Move</button>
+    </div>
+  </div>
+  <button class="refr" (click)="refresh()">
+    <i class="fas fa-sync-alt"></i>
+  </button>
+
+  <div
+    *ngFor="
+      let item of draft | paginate: { itemsPerPage: 4, currentPage: page }
+    "
+  >
+    <strong>TO:</strong><span> {{ item.to }}</span>
+    <br />
+    <strong>FROM:</strong><span> {{ item.from }}</span>
+    <br />
+    <strong>Subject:</strong><span> {{ item.subject }}</span>
+    <span class="icons">
+      <button class="delete" (click)="del()">
+        <i class="fas fa-trash"></i>
+      </button>
+      <input
+        type="checkbox"
+        name=""
+        id="dra"
+        autocomplete="off"
+        (change)="send(item.id)"
+      />
+    </span>
+    <br />
+    <strong>DATE: </strong><span>{{ item.date }}</span>
+    <br />
+    <strong>MESSAGE: </strong> <span> {{ item.content }}</span>
+    <hr />
+  </div>
+  <div class="m-auto text-center">
+    <pagination-controls (pageChange)="page = $event"></pagination-controls>
+  </div>
+</div>

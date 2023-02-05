@@ -1,0 +1,37 @@
+<app-sidebar></app-sidebar>
+<div class="draft">
+  <h1>Trash</h1>
+  <div class="justify-content-around">
+    <button class="refr" (click)="refresh()">
+      <i class="fas fa-sync-alt"></i>
+    </button>
+    <div
+      *ngFor="
+        let item of trash | paginate: { itemsPerPage: 4, currentPage: page }
+      "
+    >
+      <strong>FROM:</strong><span> {{ item.from }}</span>
+      <span class="icons">
+        <button class="delete" (click)="del()">
+          <i class="fas fa-trash"></i>
+        </button>
+        <input
+          type="checkbox"
+          name=""
+          id="tra"
+          autocomplete="off"
+          (change)="send(item.id)"
+        />
+      </span>
+      <br />
+      <strong>DATE: </strong><span>{{ item.date }}</span>
+      <br />
+      <strong>MESSAGE: </strong> <span> {{ item.content }}</span>
+      <hr />
+    </div>
+
+    <div class="m-auto text-center">
+      <pagination-controls (pageChange)="page = $event"></pagination-controls>
+    </div>
+  </div>
+</div>

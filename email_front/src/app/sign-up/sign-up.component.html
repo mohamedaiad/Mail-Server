@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Slide Navbar</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="main">
+      <input type="checkbox" id="chk" aria-hidden="true" />
+
+      <div class="signup">
+        <label for="chk">Sign up</label>
+        <input
+          id="newName"
+          (click)="none()"
+          [(ngModel)]="data.username"
+          type="text"
+          name="txt"
+          placeholder="User name"
+          required
+        />
+        <input
+          id="newEmail"
+          [(ngModel)]="data.email"
+          type="email"
+          name="email"
+          placeholder="Email"
+          required
+        />
+        <input
+          id="newPassword"
+          [(ngModel)]="password"
+          type="password"
+          name="pswd"
+          placeholder="Password"
+          required
+        />
+        <input
+          id="Re-password"
+          [(ngModel)]="rePassword"
+          type="password"
+          name="pswd"
+          placeholder="Re-password"
+          required
+        />
+        <input
+          id="newPhone"
+          [(ngModel)]="data.phonenumber"
+          type="text"
+          name="txt"
+          placeholder="Phone number"
+          required
+        />
+        <div class="alert" id="alert" [style.display]="displayAlert">
+          <p>{{ expression }}</p>
+        </div>
+        <div class="done" [style.display]="displayDone">
+          <p>Your registeration is done go to the login part</p>
+        </div>
+        <button (click)="signUpValidation()" type="submit">Sign up</button>
+      </div>
+
+      <div class="login">
+        <label for="chk">Login</label>
+        <input
+          type="email"
+          [(ngModel)]="emailSignIn"
+          name="email"
+          placeholder="Email or phone number"
+          required
+        />
+        <input
+          type="password"
+          [(ngModel)]="passwordSignIn"
+          name="pswd"
+          placeholder="Password"
+          required
+        />
+        <button (click)="signIn()">Login</button>
+      </div>
+    </div>
+  </body>
+</html>

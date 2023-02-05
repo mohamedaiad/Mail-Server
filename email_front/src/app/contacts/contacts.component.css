@@ -1,0 +1,29 @@
+h1 {
+  color: #09c;
+  text-align: center;
+}
+h2 {
+  color: #09c;
+}
+input {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+strong {
+  color: #09c;
+}
+.alert {
+  background-color: rgba(207, 79, 79, 0.6);
+  color: black;
+  margin: auto;
+  padding: 2px;
+  width: 75%;
+  border-radius: 3px;
+  border: solid red;
+  font-size: 13px;
+  text-align: center;
+}
+.delete {
+  background-color: transparent;
+  border: transparent;
+}

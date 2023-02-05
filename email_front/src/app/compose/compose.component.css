@@ -1,0 +1,27 @@
+input [type="file"] {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+}
+.alert {
+  background-color: rgba(231, 67, 67, 0.6);
+  border: solid 1px red;
+  margin: 2px;
+}
+h1 {
+  color: #09c;
+  text-align: center;
+}
+.plus {
+  position: absolute;
+  right: 28%;
+  top: 14%;
+}
+.attach {
+  color: #09c;
+  width: 100px;
+  height: 30px;
+}
+strong {
+  color: #09c;
+}

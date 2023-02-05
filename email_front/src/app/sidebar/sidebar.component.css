@@ -1,0 +1,36 @@
+.container{
+    width: 20%;
+    position: relative;
+    border: grey solid 1px;
+    height: 120vh;
+    float: left;
+    background: linear-gradient(to bottom,#000,#09c);
+    color: white;
+    
+}
+nav{
+    width: 80%;
+    float: left;
+}
+h2{
+    text-align: center;
+    color: #09c;
+}
+ul{
+    list-style: none;
+    width: 100%;
+}
+li{
+    padding: 5px;
+    cursor: pointer;
+    width: 100%;
+    margin: auto;
+    
+}
+a{
+    text-decoration: none;
+    color: white;
+}
+li :hover{
+    background-color: cornflowerblue;
+}

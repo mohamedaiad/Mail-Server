@@ -1,0 +1,30 @@
+<app-sidebar></app-sidebar>
+<div class="contact">
+  <h1>Contacts</h1>
+  <div class="mx-2 newFriend">
+    <h2>New friend</h2>
+    <div>
+      <input
+        type="email d-block mx-2"
+        [(ngModel)]="email"
+        placeholder="Enter the email"
+      />
+      <button type="submit" class="btn btn-info" (click)="find()">
+        Add friend
+      </button>
+    </div>
+  </div>
+  <hr />
+  <div>
+    <h2>Your friends</h2>
+    <div *ngFor="let item of final">
+      <strong>Email:</strong><span> {{ item }}</span>
+      <span class="icons">
+        <button class="delete" (click)="delete(item)">
+          <i class="fas fa-trash"></i>
+        </button>
+      </span>
+      <hr />
+    </div>
+  </div>
+</div>

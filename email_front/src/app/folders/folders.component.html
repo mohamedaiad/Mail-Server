@@ -1,0 +1,94 @@
+<app-sidebar></app-sidebar>
+<div>
+  <br />
+  <div class="row">
+    <div class="add col-12 my-2 d-flex">
+      <div class="me-2">
+        <input
+          [(ngModel)]="folderName"
+          placeholder="name of new folder"
+          class="file-upload me-2"
+        />
+        <button class="but btn btn-info" (click)="add()">ADD</button>
+      </div>
+      <div>
+        <div class="alert" id="alert" [style.display]="displayAlertAdd">
+          <p>{{ answer }}</p>
+        </div>
+      </div>
+    </div>
+    <br />
+    <div class="rename col-12 my-2 d-flex">
+      <div class="me-2">
+        <input
+          [(ngModel)]="oldFolder"
+          placeholder="old name"
+          class="file-upload"
+        />
+        <br />
+        <input
+          [(ngModel)]="newFolder"
+          placeholder="new name"
+          class="file-upload me-2"
+        />
+        <button class="but btn btn-info" (click)="rename()">RENAME</button>
+      </div>
+      <div>
+        <div class="alert" id="alert" [style.display]="displayAlertRename">
+          <p>{{ answer }}</p>
+        </div>
+      </div>
+    </div>
+    <br />
+    <div class="delete col-12 my-2 d-flex">
+      <div class="me-2">
+        <input
+          [(ngModel)]="deleteFolder"
+          placeholder="name of folder"
+          class="file-upload me-2"
+        />
+        <button class="but btn btn-info" (click)="delete()">DELETE</button>
+      </div>
+      <div>
+        <div class="alert" id="alert" [style.display]="displayAlertdelete">
+          <p>{{ answer }}</p>
+        </div>
+      </div>
+    </div>
+    <br />
+    <div class="show col-6">
+      <select
+        class="d-block w-100 mb-2"
+        name="folder"
+        id="Folder"
+        (change)="findName($event)"
+        (click)="showFolders()"
+      >
+        <option *ngFor="let item of foldername" value="{{ item }}">
+          {{ item }}
+        </option>
+      </select>
+      <button class="but btn btn-info" (click)="show()">SHOW</button>
+    </div>
+  </div>
+  <div
+    *ngFor="
+      let item of messages | paginate: { itemsPerPage: 4, currentPage: page }
+    "
+  >
+    <strong>TO:</strong><span> {{ item.to }}</span>
+    <br />
+    <strong>FROM: </strong><span>{{ item.from }}</span>
+    <br />
+    <strong>Subject:</strong><span> {{ item.subject }}</span>
+    <br />
+    <strong>DATE: </strong><span>{{ item.date }}</span>
+    <br />
+    <strong>MESSAGE: </strong> <span> {{ item.content }}</span>
+    <hr />
+  </div>
+
+  <div class="m-auto text-center" [style.display]="displayPag">
+    <pagination-controls (pageChange)="page = $event"></pagination-controls>
+  </div>
+</div>
