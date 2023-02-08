@@ -22,11 +22,8 @@ export class ContactsComponent implements OnInit {
   show: any;
   final: string[] = [];
   sendRequest(x: string) {
-    let origin = "http://localhost:8060/get/expression"
-    
-    if(location.port == "61606") {
-      origin = "http://localhost:8070/get/expression"
-    }
+    let origin = "http://localhost:8070/Email/show/contact"
+
     if (x != '') {
       const headers = new HttpHeaders({ 'Content-Type': "application/text" })
       this.http.post(origin, x,
@@ -34,36 +31,36 @@ export class ContactsComponent implements OnInit {
         .subscribe(response => {
           this.json = response;
           this.show = JSON.parse(this.json)
-          console.log(this.show)
           this.final = this.show.contacts;
-
         }
           , (error) => {
             console.log(error);
           });
     }
   }
+  URL : string = ""
   send(x: string) {
     if (x != '') {
       const headers = new HttpHeaders({ 'Content-Type': "application/text" })
-      this.http.post("http://localhost:8060/get/expression", x,
+      this.http.post(this.URL, x,
         { headers: headers, responseType: 'text' })
         .subscribe(response => {
-           this.answer = response;
+          this.answer = response;
         }
           , (error) => {
             console.log(error);
           });
     }
-  }  
+  }
   find() {
-    let x = "addcontact&" + this.email
+    let x = this.email
+    this.URL = "http://localhost:8070/Email/add/contact"
     this.send(x)
     window.location.reload()
   }
   delete(item:any){
-     console.log(item)
-     let x ="removecontact&"+item
+     let x = item
+     this.URL = "http://localhost:8070/Email/remove/contact"
      this.send(x)
      window.location.reload()
   }

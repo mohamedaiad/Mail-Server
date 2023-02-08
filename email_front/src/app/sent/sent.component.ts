@@ -36,7 +36,7 @@ export class SentComponent implements OnInit {
   ]
   sendRequest(x: string) {
     let origin = "http://localhost:8060/get/expression"
-    
+
     if(location.port == "61606") {
       origin = "http://localhost:8070/get/expression"
     }
@@ -55,7 +55,7 @@ export class SentComponent implements OnInit {
   }
   sendfile(x: string) {
     let origin = "http://localhost:8060/get/expression"
-    
+
     if(location.port == "61606") {
       origin = "http://localhost:8070/get/expression"
     }
@@ -83,7 +83,7 @@ export class SentComponent implements OnInit {
   sortValue:any = "default";
   displayAlert:any = "None"
   sort(event:any){
-    this.sortValue=event.target.value 
+    this.sortValue=event.target.value
   }
   sendSort(){
     let x = "show&sent&"+this.sortValue
@@ -97,14 +97,14 @@ export class SentComponent implements OnInit {
   }
   searchValue(event:any){
     console.log(event.target.value);
-    this.searchvalue=event.target.value 
+    this.searchvalue=event.target.value
   }
   sendSearch(){
      if(this.searchinput!=""){
        let x = "show&sent&search-"+ this.searchvalue + "-" + this.searchinput
        console.log(x)
-      this.sendRequest(x) 
-      this.displayAlert= "None"   
+      this.sendRequest(x)
+      this.displayAlert= "None"
      }
      else{
         this.displayAlert= "block"
@@ -113,23 +113,19 @@ export class SentComponent implements OnInit {
   showFolders() {
     let x = "showfolders"
     this.sendfile(x)
-  }  
+  }
   findName(event:any){
-    this.selected=event.target.value    
+    this.selected=event.target.value
   }
   send(num: any) {
     if(this.selectedMsgs.includes(num))
     {
       var value = num + "-"
       this.selectedMsgs = this.selectedMsgs.replace(value,'')
-      console.log(value)
-      console.log(this.selectedMsgs)
     }
     else
     {
       this.selectedMsgs += num+'-'
-      console.log(num)
-      console.log(this.selectedMsgs)
     }
   }
   move(){

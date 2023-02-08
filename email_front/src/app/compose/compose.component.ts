@@ -29,15 +29,12 @@ export class ComposeComponent implements OnInit {
     "date": "",
     "importance": this.importance
   }
+  URL: string = ""
   sendRequest(x: any) {
-    let origin = "http://localhost:8060/get/expression"
-    
-    if(location.port == "61606") {
-      origin = "http://localhost:8070/get/expression"
-    }
+
     if (x != '') {
       const headers = new HttpHeaders({ 'Content-Type': "application/text" })
-      this.http.post(origin, x,
+      this.http.post(this.URL, x,
         { headers: headers, responseType: 'text' })
         .subscribe(response => {
            this.answer = response;
@@ -81,7 +78,8 @@ export class ComposeComponent implements OnInit {
       this.display = 'block'
     }
     else {
-      let x = "send&"+JSON.stringify(this.msg)
+      let x = JSON.stringify(this.msg)
+      this.URL = "http://localhost:8070/Email/send"
       this.sendRequest(x)
       this.clear()
     }
@@ -99,7 +97,8 @@ export class ComposeComponent implements OnInit {
       this.display = 'block'
     }
     else {
-      let x = "draft&"+JSON.stringify(this.msg)
+      let x = JSON.stringify(this.msg)
+      this.URL = "http://localhost:8070/Email/draft"
       this.sendRequest(x)
       this.clear()
     }

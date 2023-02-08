@@ -9,26 +9,21 @@ import { Router, NavigationEnd } from '@angular/router';
 })
 export class SignUpComponent implements OnInit {
 
-  constructor(private http :HttpClient, private _router:Router) {
-  
-   }
+  constructor(private http :HttpClient, private _router:Router) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
+
   answer:any
   sendRequestSignIn(x: string) {
-    let origin = "http://localhost:8060/get/expression"
-    
-    if(location.port == "61606") {
-      origin = "http://localhost:8070/get/expression"
-    }
+    let origin = "http://localhost:8070/Email/signIn"
+
     if (x != '') {
       const headers = new HttpHeaders({ 'Content-Type': "application/text" })
       this.http.post(origin, x,
         { headers: headers, responseType: 'text' })
         .subscribe(response => {
-           this.answer = response;
-           if(this.answer == "ERROR")
+            this.answer = response;
+            if(this.answer == "ERROR")
               this.displaySign = "block"
             else
               this._router.navigate(['compose'])
@@ -39,23 +34,20 @@ export class SignUpComponent implements OnInit {
     }
   }
   sendRequestSignOut(x: string) {
-    let origin = "http://localhost:8060/get/expression"
-    
-    if(location.port == "61606") {
-      origin = "http://localhost:8070/get/expression"
-    }
+    origin = "http://localhost:8070/Email/signUp"
+
     if (x != '') {
       const headers = new HttpHeaders({ 'Content-Type': "application/text" })
       this.http.post(origin, x,
         { headers: headers, responseType: 'text' })
         .subscribe(response => {
-           this.answer = response;
-           if(this.answer=="ERROR"){
-             this.displayAlert='block'
-             this.expression = "This email has been used before "
-             this.displayDone='None'
-             this.displaySign='None'
-           }
+            this.answer = response;
+            if(this.answer=="ERROR"){
+              this.displayAlert='block'
+              this.expression = "This email has been used before "
+              this.displayDone='None'
+              this.displaySign='None'
+            }
         }
           , (error) => {
             console.log(error);
@@ -84,11 +76,10 @@ export class SignUpComponent implements OnInit {
       "email": this.emailSignIn,
       "password": this.passwordSignIn
     }
-    let sign = "signin&"+JSON.stringify(signin)
-    console.log(sign)
+    let sign = JSON.stringify(signin)
     this.sendRequestSignIn(sign)
-    console.log(this.answer)
   }
+  
   signUpValidation() {
     if (this.data.username == "") {
       this.displayAlert = "block"
@@ -112,8 +103,7 @@ export class SignUpComponent implements OnInit {
     }
     else {
       this.data.password = this.password
-      this.check = "signup&" + JSON.stringify(this.data)
-      console.log(this.check) 
+      this.check = JSON.stringify(this.data)
       this.sendRequestSignOut(this.check)
       this.clear()
       this.displayAlert = "None"
@@ -121,7 +111,7 @@ export class SignUpComponent implements OnInit {
     }
   }
   none(){
-     this.displayDone='None'
+    this.displayDone='None'
   }
   clear() {
     this.data.username = ""
